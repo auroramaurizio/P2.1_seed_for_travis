@@ -10,7 +10,7 @@ FCFLAGS = -O3 -Wall -Wextra -std=f2003
 
 # List of executables 
 
-default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./list_tools.f03 ./sortedreal_04.x
+default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./list_tools.f03 ./sortedreal_04.x ./sortedreal_05.x
 
 
 clean:	
@@ -34,7 +34,8 @@ clean:
 	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
 
 
-
+./sortedreal_05.x: list_tools.o sortedreal_05.o
+	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
 
 
 
