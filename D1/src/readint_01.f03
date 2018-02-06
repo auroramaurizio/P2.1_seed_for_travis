@@ -22,7 +22,8 @@ program readint
     print *, "No match in sum."
     print *, "Expected sum:", check_sum
     print *, "Calculated sum:", array_sum
-  end if
+ end if
+ 
 
   deallocate( array )
 end program readint
