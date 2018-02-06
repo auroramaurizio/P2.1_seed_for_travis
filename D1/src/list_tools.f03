@@ -2,7 +2,6 @@ MODULE list_tools
 
   implicit none
 
-
 contains 
 
 SUBROUTINE is_sorted(inp, length, sorted)
