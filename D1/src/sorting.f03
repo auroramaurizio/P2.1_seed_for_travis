@@ -1,7 +1,7 @@
 MODULE sorting
   IMPLICIT NONE
   PRIVATE
-  PUBLIC :: simplesort, quicksort
+  PUBLIC :: simplesort, quicksort, bubblesort, insertionsort
 CONTAINS
 
   ! pathetically bad sorting algorithm:
@@ -25,6 +25,58 @@ CONTAINS
         END DO
     END DO
   END SUBROUTINE simplesort
+
+
+
+
+  SUBROUTINE bubblesort(dat)
+
+    IMPLICIT NONE
+    REAL, DIMENSION(:), INTENT(inout) :: dat
+    INTEGER :: num, i, j
+    REAL :: tmp
+
+    num = SIZE(dat,1)
+    IF (num < 2) RETURN
+    do i=1, num-1
+        do j=2, num-i+1
+            if (dat(j-1) > dat(j)) then
+                tmp = dat(j-1)
+                dat(j-1) = dat(j)
+                dat(j) = tmp
+            endif 
+        end do
+    end do
+
+  END SUBROUTINE bubblesort
+
+!Insertion sort takes maximum time to sort if elements are sorted in reverse order (O(N**2)) 
+!or half and half. And it takes minimum time (Order of n) when elements are already sorted.
+!Insertion sort is used when number of elements is small. It can also be useful when input array is almost sorted,
+! only few elements are misplaced in complete big array.
+
+  SUBROUTINE insertionsort(dat)
+
+    IMPLICIT NONE
+    REAL, DIMENSION(:), INTENT(inout) :: dat
+    INTEGER :: num, i, j
+    REAL :: tmp
+
+    num = SIZE(dat,1)
+    IF (num < 2) RETURN
+    do i = 2, num
+        j = i
+        tmp = dat(i)
+        do while (j > 1)
+            if (dat(j-1) < tmp) exit
+            dat(j) = dat(j-1)
+            j = j - 1
+        end do
+        dat(j) = tmp
+    end do
+
+  END SUBROUTINE insertionsort
+
 
   ! quicksort implementation via recursion
   ! top-level takes whole array, recursions work on subsets.
