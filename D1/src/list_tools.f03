@@ -37,7 +37,7 @@ SUBROUTINE is_sorted_int(inp, length, sorted, order)
       exit
     endif
     end do
-  else ! order .eqv. descending
+  else 
     do i=2, length
     if  (last < inp(i)) then
       sorted = .false.
@@ -77,7 +77,7 @@ SUBROUTINE is_sorted_real (inp, length, sorted, order)
       exit
     endif
     end do
-  else ! order .eqv. descending
+  else 
     do i=2, length
     if  (last < inp(i)) then
       sorted = .false.

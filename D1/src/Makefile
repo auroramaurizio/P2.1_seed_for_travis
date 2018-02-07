@@ -10,7 +10,7 @@ FCFLAGS = -O3 -Wall -Wextra -std=f2003
 
 # List of executables 
 
-default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./list_tools.f03 ./sortedreal_04.x ./sortedreal_05.x ./funct_overl_06.x
+default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./list_tools.f03 ./sortedreal_04.x ./sortedreal_05.x ./funct_overl_06.x ./deriv_types_07.x
 
 
 clean:	
@@ -41,10 +41,12 @@ clean:
 ./funct_overl_06.x: list_tools.o funct_overl_06.o
 	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
 
+        
+./deriv_types_07.x: deriv_types_07.o
+	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
+
 %.o: %.f03
 	$(FC) -c $(FCFLAGS) $< 
         
-
-
 
 
