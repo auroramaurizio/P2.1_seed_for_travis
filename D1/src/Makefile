@@ -10,7 +10,7 @@ FCFLAGS = -O3 -Wall -Wextra -std=f2003
 
 # List of executables 
 
-default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./sortedreal_04.x ./sortedreal_05.x ./funct_overl_06.x ./deriv_types_07.x ./multiplemodules_08.x ./simplesort_09.x ./bubblesort_10.x ./insertionsort_11.x ./quicksort_12.x ./mergesort_13.x ./next_prime_16.x
+default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./sortedreal_04.x ./sortedreal_05.x ./funct_overl_06.x ./deriv_types_07.x ./multiplemodules_08.x ./simplesort_09.x ./bubblesort_10.x ./insertionsort_11.x ./quicksort_12.x ./mergesort_13.x ./next_prime_16.x ./array_lookup_17.x
 
 
 clean:	
@@ -60,6 +60,8 @@ clean:
 ./next_prime_16.x: next_prime_16.o
 	$(FC) -o $@ $^ $(FCFLAGS) 
 
+./array_lookup_17.x: list_types.o linkedlist.o array_lookup_17.o
+	$(FC) -o $@ $^ $(FCFLAGS) 
 
 %.o: %.f03
 	$(FC) -c $(FCFLAGS) $< 
