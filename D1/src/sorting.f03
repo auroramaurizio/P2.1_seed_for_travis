@@ -1,7 +1,7 @@
 MODULE sorting
   IMPLICIT NONE
   PRIVATE
-  PUBLIC :: simplesort, quicksort, bubblesort, insertionsort
+  PUBLIC :: simplesort, quicksort, bubblesort, insertionsort, mergesort
 CONTAINS
 
   ! pathetically bad sorting algorithm:
@@ -136,5 +136,58 @@ CONTAINS
     dat(right) = dat(i)
     dat(i) = pivot
   END FUNCTION select_pivot
+
+SUBROUTINE mergesort(dat)
+
+    IMPLICIT NONE
+    REAL, DIMENSION(:), INTENT(inout) :: dat
+    INTEGER :: num, i, j, k, l, r, lindx, rindx
+    REAL, DIMENSION(:), ALLOCATABLE :: d
+ 
+
+    num = SIZE(dat,1)
+    IF (num < 2) RETURN
+    
+    ALLOCATE(d(num))
+
+    d = dat
+    i = 1
+    do while (i < num)
+        do j = 1,num,2*i
+           lindx = j
+           rindx = j+i 
+            k = j 
+            r = min(j+2*i, num+1)
+            l = min(j+i, num+1)
+            do while (lindx < l .and. rindx < r)
+                if (dat(lindx) < dat(rindx)) THEN
+                    d(k) = dat(lindx)
+                    lindx = lindx + 1
+                else
+                    d(k) = dat(rindx)
+                    rindx = rindx + 1
+                endif
+                k = k+1 
+            end do
+            do while (lindx < l)
+                d(k) = dat(lindx)
+                k = k+1
+                lindx = lindx+1 
+            end do
+            do while (rindx < r)
+                d(k) = dat(rindx)
+                k = k+1
+                rindx = rindx+1 
+            end do
+        end do
+        i = i*2
+        dat = d
+    end do
+    
+    DEALLOCATE(d)
+
+
+  END SUBROUTINE mergesort
+
 
 END MODULE sorting

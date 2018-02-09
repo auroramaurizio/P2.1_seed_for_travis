@@ -3,14 +3,14 @@ SHELL=/bin/sh
 # The compiler
 FC = gfortran
 
-FCFLAGS = -O3 -Wall -Wextra -std=f2003
+FCFLAGS = -O3 -Wall -Wextra -std=f2003 -p #-pg
 
 
 
 
 # List of executables 
 
-default: ./readint_01.x ./readreal_02.x ./sorted_03.x ./sortedreal_04.x ./sortedreal_05.x ./funct_overl_06.x ./deriv_types_07.x ./multiplemodules_08.x
+default: ./simplesort_09.x ./bubblesort_10.x ./insertionsort_11.x ./quicksort_12.x ./mergesort_13.x 
 
 
 clean:	
@@ -20,33 +20,22 @@ clean:
 
 
 
-./readint_01.x: readint_01.o
+./simplesort_09.x: list_tools.o sorting.o simplesort_09.o
 	$(FC) -o $@ $^ $(FCFLAGS) 
 
-./readreal_02.x: readreal_02.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
+./bubblesort_10.x: list_tools.o sorting.o bubblesort_10.o
+	$(FC) -o $@ $^ $(FCFLAGS) 
 
-./sorted_03.x: sorted_03.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
+./insertionsort_11.x: list_tools.o sorting.o insertionsort_11.o
+	$(FC) -o $@ $^ $(FCFLAGS) 
 
+./quicksort_12.x: list_tools.o sorting.o quicksort_12.o
+	$(FC) -o $@ $^ $(FCFLAGS) 
 
-./sortedreal_04.x: list_types.o list_tools.o sortedreal_04.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
-
-
-./sortedreal_05.x: list_types.o list_tools.o sortedreal_05.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
+./mergesort_13.x: list_tools.o sorting.o mergesort_13.o
+	$(FC) -o $@ $^ $(FCFLAGS) 
 
 
-./funct_overl_06.x: list_types.o list_tools.o funct_overl_06.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
-
-        
-./deriv_types_07.x: deriv_types_07.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
-
-./multiplemodules_08.x:  list_types.o list_tools.o multiplemodules_08.o
-	$(FC) -o $@ $^ $(FCFLAGS) $(LIBS)
 
 
 %.o: %.f03
